@@ -93,7 +93,7 @@ Lets make it so that when the user clicks 'Search', we make an API request to Ma
 
 When you make the request, customize the URL so that the the address reflects the value in the address text input and the API key comes from the API key text input.
 
-**Important note:** Mapbox expects the address in the API request to be "URL encoded". This means that special characters in the address like spaces should be replaced with valid characters than can go in a URL. To URL encode any string in Javascript, simply use the built in [`encodeURI()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI) function.
+**Important note:** Mapbox expects the address in the API request to be "URL encoded". This means that special characters in the address like spaces should be replaced with valid characters than can go in a URL. To URL encode any string in Javascript, simply use the built in [`encodeURI()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI) function. 
 
 Upon receiving a response from the Mapbox API, extract the longitude and latitude from the response JSON (hint: look in `.features[0].center[0]` and `.features[0].center[1]`) and console.log them both out.
 
@@ -103,7 +103,7 @@ Ok so our previous request responded with the longitude and latitude of the addr
 
 Now, we need take that longitude and latitude along with the satellite ID (a.k.a. NORAD) entered into the text input and make a request to the Satellite Passes API. This will tell us when the satellite will next be visible.
 
-As with before, I recommend first reading the API's documentation [here](https://satellites.fly.dev/) and making a test requet in the browser before diving into the Javascript. Additionally, the documentation for this API is pretty sparse so here's an aditional example:
+As with before, I recommend first reading the API's documentation [here](https://satellites.fly.dev/) and making a test request in the browser before diving into the Javascript. Additionally, the documentation for this API is pretty sparse so here's an aditional example:
 
 ```
 The following endpoint will make a request for the next visible satellite pass at 
@@ -116,7 +116,7 @@ The response below is an array of satellite passes (containing one value).
 Each satellite pass object contains four properties:
 * rise        - contains information on when the satellite rises over the horizon into view
 * culmination - contains information on when the satellite peaks in its arc on the horizon
-* set         - contains informatinon on when the satellite sets below the horizon
+* set         - contains information on when the satellite sets below the horizon
 * visible     - true or false whether or not the satellite will be visible
 
 == RESPONSE ==
@@ -154,9 +154,9 @@ Each satellite pass object contains four properties:
 ]
 ```
 
-After trying this in the browser, move into the code. After recieving the response from the previous API with longitude / latitude. Make a request to the satellite API customizing the `lat`, `lon`, and `norad` portions of the URL.
+After trying this in the browser, move into the code. After receiving the response from the previous API with longitude / latitude. Make a request to the satellite API customizing the `lat`, `lon`, and `norad` portions of the URL.
 
-After recieving a response from the API, console.log out the UTC date/time at which the satellite will rise, culminate, and set.
+After receiving a response from the API, console.log out the UTC date/time at which the satellite will rise, culminate, and set.
 
 #### 5. Displaying Information to the User
 
