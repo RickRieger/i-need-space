@@ -18,7 +18,7 @@ function toHoursMinutesSeconds(sec) {
     let hrs = Math.floor(sec / 3600);
     let min = Math.floor((sec - (hrs * 3600)) / 60);
     let seconds = sec - (hrs * 3600) - (min * 60);
-    seconds = Math.round(seconds * 100) / 100
+    seconds = Math.round(seconds * 100) / 100;
     
     let result = (hrs < 10 ? "0" + hrs : hrs);
     result += ":" + (min < 10 ? "0" + min : min);
@@ -26,8 +26,10 @@ function toHoursMinutesSeconds(sec) {
     return result;
 }
 
+// Add button that returns the input fields to be displayed
+// and clear the input fields
 newSearchButton.addEventListener('click',()=>{
-
+    
     document.querySelector('#results').style.display = 'none';
     const querySelection = document.querySelectorAll('.query-section')
     for(const element of querySelection){
@@ -41,14 +43,23 @@ newSearchButton.addEventListener('click',()=>{
 
 
 // Add event listener to search button with a call back function
+// to handle everything
 searchButton.addEventListener('click',()=>{
     
+    // display alert if and input fields are empty
+    if(noradSatellite.value === ''|| address.value === '' || apiKey.value === ''){
+        alert('please enter values in all fields');
+        return;
+    }
+    
+    
+    // Make input fields disappear
     const querySelection = document.querySelectorAll('.query-section')
     for(const element of querySelection){
         element.style.display = 'none';
     }
     
-   
+    
     
     // Display the NORAD# to DOM
     document.querySelector('#norad-num').innerText = noradSatellite.value;
@@ -56,21 +67,21 @@ searchButton.addEventListener('click',()=>{
     // Display the city to the DOM
     document.querySelector('#place').innerText = address.value;
     
-    
-    
     // Encode the address from input field
     const encodedAddress = encodeURI(address.value);
     
     // Set the url address in the variable using a template string(template literal)
     const mapBoxURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodedAddress}.json?access_token=${apiKey.value}`;
     
-    // Fetch the API
+    // Fetch the MAP API to receive an array of locations
     fetch(mapBoxURL)
     
     .then((result) => result.json())
     
     .then((data) => {
-           
+        
+
+
         const longitude1 = data.features[0].center[0];
         const latitude1 = data.features[0].center[1];
         
@@ -104,8 +115,7 @@ searchButton.addEventListener('click',()=>{
             const timeArrayRise2 = timeArrayRise[1].split('.');
             const riseDate = timeArrayRise[0];
             const riseTime = timeArrayRise2[0];
-            console.log(riseTime);
-            console.log(riseDate);
+            
             
             // Extract the date and time from the UTC_Apex
             const apex = UTC_Apex.toString();
@@ -120,9 +130,8 @@ searchButton.addEventListener('click',()=>{
             const timeArraySet2 = timeArraySet[1].split('.');
             const setDate = timeArraySet[0];
             const setTime = timeArraySet2[0];
-            console.log(setTime);
-            console.log(setDate);
-
+            
+            
             // Set direction of hemisphere into variables
             const cardinalDirectionRise = data[0].rise.az_octant;
             const cardinalDirectionCulmination = data[0].culmination.az_octant;
@@ -137,7 +146,7 @@ searchButton.addEventListener('click',()=>{
             // to the DOM in all three stages of visibility for three different locations.
             document.querySelector('#date-0').innerText = riseDate;
             document.querySelector('#time-rise-0').innerText = riseTime;
-            document.querySelector('#location-rise-0').innerText = cardinalDirectionRise;
+            document.querySelector(`#location-rise-0`).innerText = cardinalDirectionRise;
             document.querySelector('#elevation-rise-0').innerText = altitudeRise;
             document.querySelector('#location-apex-0').innerText = cardinalDirectionCulmination;
             document.querySelector('#elevation-apex-0').innerText = altitudeCulmination;
@@ -152,12 +161,11 @@ searchButton.addEventListener('click',()=>{
             const localRiseTime = new Date(data[0].rise.utc_datetime);
             const localCulminationTime = new Date(data[0].culmination.utc_datetime);
             const localSetTime = new Date(data[0].set.utc_datetime);
-
+            
             
             // // extract the time as Hours:Minutes:Seconds
             const riseTime2 = localRiseTime.toString();
             const timeArray = riseTime2.split(' ');
-
             const firstTime = timeArray[4];
             
             // // extract the time as Hours:Minutes:Seconds
@@ -166,11 +174,8 @@ searchButton.addEventListener('click',()=>{
             const secondTime = timeArray2[4];
             
             // // handle the duration the satellite is visible
-            const durationOfVisibility = toHoursMinutesSeconds( strToSeconds(secondTime) - strToSeconds(firstTime));
-            console.log(durationOfVisibility);
+            const durationOfVisibility = toHoursMinutesSeconds(strToSeconds(secondTime) - strToSeconds(firstTime));
             document.querySelector('#duration-0').innerText = durationOfVisibility;
-
-            
         })
         
         // Change satelliteURL value
@@ -182,7 +187,7 @@ searchButton.addEventListener('click',()=>{
         .then((result) => result.json())
         
         .then((data) => {
-            
+            console.log(data);
             // Assign variables to the UTC timeStamps
             const UTC_Rise = data[0].rise.utc_datetime;
             const UTC_Apex = data[0].culmination.utc_datetime;
@@ -251,9 +256,8 @@ searchButton.addEventListener('click',()=>{
             
             // // handle the duration the satellite is visible
             const durationOfVisibility = toHoursMinutesSeconds( strToSeconds(secondTime) - strToSeconds(firstTime));
-            console.log(durationOfVisibility);
             document.querySelector('#duration-1').innerText = durationOfVisibility;
-
+            
             
         })
         
@@ -266,7 +270,7 @@ searchButton.addEventListener('click',()=>{
         .then((result) => result.json())
         
         .then((data) => {
-            
+            console.log(data);
             // Assign variables to the UTC timeStamps
             const UTC_Rise = data[0].rise.utc_datetime;
             const UTC_Apex = data[0].culmination.utc_datetime;
@@ -323,27 +327,29 @@ searchButton.addEventListener('click',()=>{
             const localRiseTime = new Date(data[0].rise.utc_datetime);
             const localCulminationTime = new Date(data[0].culmination.utc_datetime);
             const localSetTime = new Date(data[0].set.utc_datetime);
-
+            
             
             // // extract the time as Hours:Minutes:Seconds
             const riseTime2 = localRiseTime.toString();
             const timeArray = riseTime2.split(' ');
             const firstTime = timeArray[4];
-            console.log(firstTime)
             // // extract the time as Hours:Minutes:Seconds
             const setTime2 = localSetTime.toString();
             const timeArray2 = setTime2.split(' ');
             const secondTime = timeArray2[4];
-            console.log(secondTime)
-
+            
+            
             
             // // handle the duration the satellite is visible
             const durationOfVisibility = toHoursMinutesSeconds( strToSeconds(secondTime) - strToSeconds(firstTime));
-            console.log(durationOfVisibility);
             document.querySelector('#duration-2').innerText = durationOfVisibility;
-
+            
             
         });
     });
-    document.querySelector('#results').style.display = 'block';
+    
+    const results = document.querySelector('#results')
+    results.style.display ='block';
+    
+    
 });

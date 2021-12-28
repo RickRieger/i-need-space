@@ -9,7 +9,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-image:url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80);
+    background-image:url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1);
+    object-fit: cover;
+    object-position: 100% 100%;
 }
 
 h1, h2 {
@@ -26,6 +28,8 @@ h2 {
     width: 1000px;
     max-width: 90%;
     margin: auto;
+    margin-top: 10%;
+    padding-top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,10 +108,16 @@ button:hover {
 .inner-text{
     color:red;
 }
+a{
+    color:blue;
+}
 @media only screen and (max-width: 600px){
     .row{
         display: flex;
         flex-direction: column;
     }
 
+
 }
+
+

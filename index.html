@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satellite Viewer</title>
-    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Orelega+One&family=Roboto:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -14,7 +16,7 @@
     
     <div class="content">
         
-        <h1 class = "headers query-section">
+        <h1 class =  "query-section">
             When can I see a certain satellite?
         </h1>
         
@@ -27,6 +29,9 @@
             <div class="row">
                 <label>Mapbox API Key</label>
                 <input id="api-key" />
+            </div>
+            <div class="row">
+            <a href="https://rieger-bucket.s3.amazonaws.com/Mapbox+API+key.pdf" target="_blank">Download API key to use for search</a>
             </div>
             <div class="row">
                 <label>Address</label>
@@ -81,7 +86,7 @@
                 </div>
             </div>
             <div class="row">
-                <b>Find more of the brightest satellites' NORAD IDs&nbsp;<a href="https://www.n2yo.com/satellites/?c=1">here</a>.</b>
+                <b>Find more of the brightest satellites' NORAD IDs&nbsp;<a href="https://www.n2yo.com/satellites/?c=1" target="_blank">here</a>.</b>
             </div>
         </div>
         
@@ -99,7 +104,7 @@
             <div class="results-inner">The satellite will come in to view on the following date: <span class="inner-text" id="date-0">2021-04-24</span>
                 <br>
                 <br>
-                Starting at: <span class="inner-text" id="time-rise-0">2:11:21</span><a href=""> (Coordinated Universal Time), </a> viewers should look in 
+                Starting at: <span class="inner-text" id="time-rise-0">2:11:21</span><a href="https://www.timeanddate.com/time/aboututc.html" target="_blank"> (Coordinated Universal Time), </a> viewers should look in 
                 the <span class="inner-text" id="location-rise-0">Western</span> Hemisphere at a <span class="inner-text" id="elevation-rise-0">10.01</span>degree angle
                 of elevation (also known as altitude).  At it's peak, the satellite will move to the <span class="inner-text" id="location-apex-0">South Western</span>
                 Hemisphere at a <span class="inner-text" id="elevation-apex-0">10.01</span> degree angle of elevation, eventually disappearing in the 
@@ -115,7 +120,7 @@
             <div class="results-inner">The satellite will come in to view on the following date: <span class="inner-text" id="date-1">2021-04-24</span>
                 <br>
                 <br>
-                Starting at: <span class="inner-text" id="time-rise-1">2:11:21</span><a href=""> (Coordinated Universal Time), </a> viewers should look in 
+                Starting at: <span class="inner-text" id="time-rise-1">2:11:21</span><a href="https://www.timeanddate.com/time/aboututc.html" target="_blank"> (Coordinated Universal Time), </a> viewers should look in 
                 the <span class="inner-text" id="location-rise-1">Western</span> Hemisphere at a <span class="inner-text" id="elevation-rise-1">10.01</span>degree angle
                 of elevation (also known as altitude).  At it's peak, the satellite will move to the <span class="inner-text" id="location-apex-1">South Western</span>
                 Hemisphere at a <span class="inner-text" id="elevation-apex-1">10.01</span> degree angle of elevation, eventually disappearing in the 
@@ -131,7 +136,7 @@
             <div class="results-inner">The satellite will come in to view on the following date: <span class="inner-text" id="date-2">2021-04-24</span>
                 <br>
                 <br>
-                Starting at: <span class="inner-text" id="time-rise-2">2:11:21</span><a href=""> (Coordinated Universal Time), </a> viewers should look in 
+                Starting at: <span class="inner-text" id="time-rise-2">2:11:21</span><a href="https://www.timeanddate.com/time/aboututc.html" target="_blank"> (Coordinated Universal Time), </a> viewers should look in 
                 the <span class="inner-text" id="location-rise-2">Western</span> Hemisphere at a <span class="inner-text" id="elevation-rise-2">10.01</span>degree angle
                 of elevation (also known as altitude).  At it's peak, the satellite will move to the <span class="inner-text" id="location-apex-2">South Western</span>
                 Hemisphere at a <span class="inner-text" id="elevation-apex-2">10.01</span> degree angle of elevation, eventually disappearing in the 
@@ -151,7 +156,8 @@
         </div>
     </div>
     
-    <!-- <script src="apiKey.js"></script> -->
+    
+   
     <script src="main.js"></script>
 </body>
 </html>
